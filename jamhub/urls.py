@@ -1,6 +1,7 @@
 from django.conf.urls import patterns, url
 
 urlpatterns = patterns('jamhub.views',
+	(r'^complete/facebook/createProfile', 'create_profile'),
 	(r'^logout', 'logout_view'),
 	(r'^home', 'home'),
 	(r'^test', 'test'),

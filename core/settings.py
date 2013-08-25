@@ -185,9 +185,10 @@ Logout_URL			= '/test'
 
 SOCIAL_AUTH_COMPLETE_URL_NAME  = 'socialauth_complete'
 SOCIAL_AUTH_ASSOCIATE_URL_NAME = 'socialauth_associate_complete'
+SOCIAL_AUTH_NEW_USER_REDIRECT_URL = 'createProfile'
 
 # By default the application doesnt make redirects to different domains to disable this behavior
-SOCIAL_AUTH_SANITIZE_REDIRECTS = False
+SOCIAL_AUTH_SANITIZE_REDIRECTS = True
 
 #When your project is behind a reverse proxy that uses HTTPS the redirect URIs can became with the wrong schema 
 #(http:// instead of https://), and might cause errors with the auth process, to force HTTPS in the final URIs define this setting:
