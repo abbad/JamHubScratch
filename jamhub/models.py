@@ -26,11 +26,11 @@ class DAW(models.Model):
 		return self.name
 		
 class Profile(models.Model):
-	#user = models.ForeignKey(User)
+	user = models.ForeignKey(User)
 	role = models.ManyToManyField(Role)
-	date_created = models.DateTimeField(auto_now_add = True)
 	instruments = models.ManyToManyField(Instrument)
 	software = models.ManyToManyField(DAW)
+	date_created = models.DateTimeField(auto_now_add = True)
 	
 	def __unicode__(self):
 		return self.user
