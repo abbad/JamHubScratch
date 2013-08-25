@@ -6,7 +6,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     # Examples:
-    # url(r'^$', 'xx.views.home', name='home'),
+    url(r'^$', 'jamhub.views.home', name='home'),
     # url(r'^xx/', include('xx.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
