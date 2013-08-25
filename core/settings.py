@@ -128,7 +128,14 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     'django.contrib.admindocs',
+	'social_auth',
 )
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+	 'django.contrib.auth.context_processors.auth',
+	 'social_auth.context_processors.social_auth_by_name_backends',
+	 
+	 )
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
@@ -159,3 +166,38 @@ LOGGING = {
     }
 }
 
+# social_auth 
+AUTHENTICATION_BACKENDS = ('social_auth.backends.facebook.FacebookBackend', 'django.contrib.auth.backends.ModelBackend', )
+
+################## facebook ################
+FACEBOOK_APP_ID              = '680752408619530'
+FACEBOOK_API_SECRET          = 'b42fbc6fcfac5785367a6e0b22587dc6'
+
+FACEBOOK_EXTENDED_PERMISSIONS = ['email']
+############################################
+
+
+LOGIN_URL          = '/login-form/'
+LOGIN_REDIRECT_URL = '/home'
+LOGIN_ERROR_URL    = '/login-error/'
+
+Logout_URL			= '/test'
+
+SOCIAL_AUTH_COMPLETE_URL_NAME  = 'socialauth_complete'
+SOCIAL_AUTH_ASSOCIATE_URL_NAME = 'socialauth_associate_complete'
+
+# By default the application doesnt make redirects to different domains to disable this behavior
+SOCIAL_AUTH_SANITIZE_REDIRECTS = False
+
+#When your project is behind a reverse proxy that uses HTTPS the redirect URIs can became with the wrong schema 
+#(http:// instead of https://), and might cause errors with the auth process, to force HTTPS in the final URIs define this setting:
+#SOCIAL_AUTH_REDIRECT_IS_HTTPS = True
+
+SOCIAL_AUTH_FORCE_POST_DISCONNECT = True
+
+# recheck
+#SOCIAL_AUTH_PROTECTED_USER_FIELDS = ['email','id', 'name',	'first_name', 'last_name', 'username']
+
+SOCIAL_AUTH_REVOKE_TOKENS_ON_DISCONNECT = True
+
+SOCIAL_AUTH_CREATE_USERS = True
