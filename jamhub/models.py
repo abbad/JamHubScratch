@@ -37,8 +37,10 @@ class Profile(models.Model):
 		return unicode(self.user)
 		
 class Project(models.Model):
+	creator = models.ForeignKey(User)
 	artist = models.ManyToManyField(Profile)
 	name = models.CharField(max_length = 30)
+	description = models.TextField(max_length = 300)
 	num_stars = models.IntegerField()
 	date_created = models.DateTimeField(auto_now_add = True)
 	genre = models.CharField(max_length = 30)

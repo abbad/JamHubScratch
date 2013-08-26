@@ -4,7 +4,8 @@ urlpatterns = patterns('jamhub.views',
 	(r'^createProfile', 'create_profile'),
 	(r'^logout', 'logout_view'),
 	(r'^home', 'home'),
-	(r'^showProfile', 'show_profile'),
+	(r'^profile', 'show_profile'),
+	(r'^addProject', 'add_project'),
 	(r'^test', 'test'),
 	
 )
