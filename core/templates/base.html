@@ -9,7 +9,6 @@
   </head>
 	{% if user.is_authenticated %}
 		<p><a href="/logout" > logout </a></p>
-		<p><a href="/showProfile"> show profile </a> </p> 
 	{% else %}
 		<a href="{% url socialauth_begin 'facebook' %}" > Login Facebook </a>
 	{% endif %}
