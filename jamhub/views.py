@@ -4,6 +4,7 @@ from django.contrib.auth import logout
 from django.http import HttpResponseRedirect
 
 from forms import ProfileForm
+from models import Profile
 
 def home(request):
     return render(request, 'home.html')
@@ -28,7 +29,12 @@ def create_profile(request):
 	else:
 		profileForm = ProfileForm()
 		return render(request, 'createProfile.html', {'form': profileForm})
+
+def show_profile(request):
+	profile = Profile.objects.get(user = request.user)
 	
+	return render(request, 'profile.html', { 'profile' : profile})
+
 def test(request):
 	return render(request, 'test.html')
 	
