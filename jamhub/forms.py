@@ -10,4 +10,4 @@ class ProfileForm(forms.ModelForm):
 	class Meta:
 		model = Profile
 		fields = ['user', 'role', 'instruments', 'software']
-	
+		exclude = ['user']
