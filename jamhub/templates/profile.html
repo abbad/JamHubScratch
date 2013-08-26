@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+<p> User Name : {{ profile.user }} </p>
+<p> Instruments : 
+
+{% for instrument in profile.instruments.all %}
+	{{ instrument.name }} </br>
+{% endfor %}
+
+<p> Roles:  
+{% for role in profile.role.all %}
+	{{ role.name }} </br>
+{% endfor %}	
+</p> 
+
+<p> Digital Audio Workstation: 
+{% for daw in profile.software.all %} 
+	{{ daw.name }} </br>
+{% endfor %}
+</p>
+
+	
+</p>
+{% endblock %}
