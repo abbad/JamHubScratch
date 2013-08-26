@@ -129,6 +129,7 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable admin documentation:
     'django.contrib.admindocs',
 	'social_auth',
+	'south',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
@@ -181,23 +182,21 @@ LOGIN_URL          = '/login-form/'
 LOGIN_REDIRECT_URL = '/home'
 LOGIN_ERROR_URL    = '/login-error/'
 
-Logout_URL			= '/test'
-
-SOCIAL_AUTH_COMPLETE_URL_NAME  = 'socialauth_complete'
-SOCIAL_AUTH_ASSOCIATE_URL_NAME = 'socialauth_associate_complete'
-SOCIAL_AUTH_NEW_USER_REDIRECT_URL = 'createProfile'
+#SOCIAL_AUTH_COMPLETE_URL_NAME  = 'socialauth_complete'
+#SOCIAL_AUTH_ASSOCIATE_URL_NAME = 'socialauth_associate_complete'
+SOCIAL_AUTH_NEW_USER_REDIRECT_URL = '/createProfile'
 
 # By default the application doesnt make redirects to different domains to disable this behavior
-SOCIAL_AUTH_SANITIZE_REDIRECTS = True
+SOCIAL_AUTH_SANITIZE_REDIRECTS = False
 
 #When your project is behind a reverse proxy that uses HTTPS the redirect URIs can became with the wrong schema 
 #(http:// instead of https://), and might cause errors with the auth process, to force HTTPS in the final URIs define this setting:
-#SOCIAL_AUTH_REDIRECT_IS_HTTPS = True
+SOCIAL_AUTH_REDIRECT_IS_HTTPS = False
 
 SOCIAL_AUTH_FORCE_POST_DISCONNECT = True
 
 # recheck
-#SOCIAL_AUTH_PROTECTED_USER_FIELDS = ['email','id', 'name',	'first_name', 'last_name', 'username']
+SOCIAL_AUTH_PROTECTED_USER_FIELDS = ['email','id', 'name',	'first_name', 'last_name', 'username']
 
 SOCIAL_AUTH_REVOKE_TOKENS_ON_DISCONNECT = True
 

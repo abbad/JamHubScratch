@@ -34,12 +34,7 @@ class Profile(models.Model):
 	date_created = models.DateTimeField(auto_now_add = True)
 	
 	def __unicode__(self):
-		return self.user
-
-class ProfileForm(ModelForm):
-	class Meta:
-		model = Profile
-		fields = ['user', 'role', 'instruments', 'software']
+		return unicode(self.user)
 		
 class Project(models.Model):
 	artist = models.ManyToManyField(Profile)
