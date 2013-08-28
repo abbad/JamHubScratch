@@ -4,10 +4,11 @@ from django.contrib.auth import logout
 from django.http import HttpResponseRedirect
 
 from forms import ProfileForm, ProjectForm
-from models import Profile
+from models import Profile, Project
 
 def home(request):
-    return render(request, 'home.html')
+	projects = Project.objects.all().order_by('-date_created')[:10]
+	return render(request, 'home.html', {'projects' : projects})
 	
 def logout_view(request):
 	logout(request)

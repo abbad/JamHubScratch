@@ -1,4 +1,13 @@
 {% extends 'base.html' %}
 {% block content %}
 <p><a href="/profile"> show profile </a> </p> 
+<h2> latest projects </h2>
+{% for project in projects %} 
+	<p>
+	Project Name: {{ project.name }} </br>
+	Project Description: {{ project.description }} </br>
+	Project Creator: {{ project.creator }} </br>
+	</p>
+	
+{% endfor %}
 {% endblock %}
