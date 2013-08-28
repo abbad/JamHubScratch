@@ -41,7 +41,7 @@ class Project(models.Model):
 	artist = models.ManyToManyField(Profile)
 	name = models.CharField(max_length = 30)
 	description = models.TextField(max_length = 300)
-	num_stars = models.IntegerField()
+	num_stars = models.IntegerField( null = True)
 	date_created = models.DateTimeField(auto_now_add = True)
 	genre = models.CharField(max_length = 30)
 	

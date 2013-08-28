@@ -22,4 +22,4 @@ class ProjectForm(forms.ModelForm):
 	class Meta:
 		model = Project
 		fields = ['name', 'genre', 'description']
-		exclude = ['user', 'artist']
+		exclude = ['user', 'creator']

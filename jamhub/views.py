@@ -40,7 +40,7 @@ def add_project(request):
 			project.is_active = True
 			project.save()
 			projectForm.save_m2m()
-			return HttpResponseRedirect('showProfile')
+			return HttpResponseRedirect('profile')
 		else: 
 			return render(request, 'addProject.html', {'projectForm': projectForm})
 	else: 
