@@ -1,6 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
-<p><a href="/profile"> show profile </a> </p> 
+{% if user.is_authenticated %} </br> </br>
+<a href="/profile"> show profile </a> </p> 
+{% endif %} 
+<p>
 <h2> latest projects </h2>
 {% for project in projects %} 
 	<p>
