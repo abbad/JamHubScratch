@@ -130,6 +130,7 @@ INSTALLED_APPS = (
     'django.contrib.admindocs',
 	'social_auth',
 	'south',
+	'friendship', 
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
