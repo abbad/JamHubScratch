@@ -1,12 +1,13 @@
 {% extends 'base.html' %}
+{% load friendshiptags %}
 {% block content %}
 <p>
 <a href="addProject"> add new project</a></p>
 </br>
 </br>
+<h3> Profile </h3>
 <p> User Name : {{ profile.user }} </p>
 <p> Instruments : 
-
 {% for instrument in profile.instruments.all %}
 	{{ instrument.name }} </br>
 {% endfor %}
@@ -22,7 +23,11 @@
 	{{ daw.name }} </br>
 {% endfor %}
 </p>
-
 	
 </p>
+
+<h3> Friends </h3>
+{% friends user %}
+
+
 {% endblock %}

@@ -1,8 +1,12 @@
-# Create your views here.
+# Django Http
 from django.shortcuts import render, redirect
 from django.contrib.auth import logout
 from django.http import HttpResponseRedirect
 
+# Friendship app 
+from friendship.models import Friend, Follow
+
+# my models 
 from forms import ProfileForm, ProjectForm
 from models import Profile, Project
 
