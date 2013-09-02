@@ -70,8 +70,11 @@ def add_project(request):
 		return render(request, 'addProject.html', {'projectForm': projectForm})
 			
 def show_profile(request):
+	# get profile related to user. 
 	profile = Profile.objects.get(user = request.user)
-	return render(request, 'profile.html', { 'profile' : profile})
+	# get list of projects he created 
+	projects = Project.objects.filter(creator = request.user) 
+	return render(request, 'profile.html', { 'profile' : profile, 'projects' : projects})
 
 
 def test(request):
