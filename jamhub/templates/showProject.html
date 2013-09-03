@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% load friendshiptags %}
+{% block content %}
+</br></br>
+<a href={% url jamhub.views.show_profile %}> Profile </a>
+<br> <p>
+Project Name: {{ project.name }} </p>
+{% endblock %}

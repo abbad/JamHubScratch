@@ -7,6 +7,7 @@ urlpatterns = patterns('jamhub.views',
 	(r'^profile', 'show_profile'),
 	(r'^editProfile', 'edit_profile'),
 	(r'^addProject', 'add_project'), 
+	(r'^projects/(?P<project_id>\d+)', 'show_project'),
 	(r'^test', 'test'),
 	
 )

@@ -1,7 +1,7 @@
 # Django Http
 from django.shortcuts import render, redirect
 from django.contrib.auth import logout
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, Http404
 
 # Friendship app 
 from friendship.models import Friend, Follow
@@ -76,7 +76,18 @@ def show_profile(request):
 	projects = Project.objects.filter(creator = request.user) 
 	return render(request, 'profile.html', { 'profile' : profile, 'projects' : projects})
 
-
+def show_project(request, project_id):
+	if not request.user.is_authenticated(): 
+		return render(request, 'test.html')
+	
+	# get the object 
+	try:
+		project = Project.objects.get(id = project_id)
+	except :
+		raise Http404
+	
+	return render(request, 'showProject.html', {'project' : project})
+		
 def test(request):
 	return render(request, 'test.html')
 	
