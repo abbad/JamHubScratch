@@ -3,6 +3,11 @@
 {% block content %}
 </br></br>
 <a href={% url jamhub.views.show_profile %}> Profile </a>
-<br> <p>
-Project Name: {{ project.name }} </p>
+</br> 
+<p> Project Name: {{ project.name }} </p>
+<p> Project Description: {{ project.description }} </p>
+<p> Project started on : {{ project.date_created}}</p>
+</br>{{project.id}}
+<a href={% url jamhub.views.edit_project project.id %}> Edit Project </a>
+
 {% endblock %}

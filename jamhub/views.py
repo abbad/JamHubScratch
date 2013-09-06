@@ -45,7 +45,7 @@ def edit_profile(request):
 			profile.is_active = True
 			profile.save()
 			profileForm.save_m2m()
-			return HttpResponseRedirect('home.html')
+			return HttpResponseRedirect('profile.html')
 		else:
 			return render(request, 'editProfile.html', {'profileForm': profileForm})
 	else:
@@ -87,6 +87,30 @@ def show_project(request, project_id):
 		raise Http404
 	
 	return render(request, 'showProject.html', {'project' : project})
+		
+def edit_project(request, project_id):
+	if not request.user.is_authenticated(): 
+		return render(request, 'test.html')
+	
+	# get the object 
+	try:
+		project = Project.objects.get(id = project_id)
+	except :
+		raise Http404
+	 
+	if request.method == 'POST':
+		projectForm = ProjectForm(request.POST, instance = project)
+		if projectForm.is_valid() and request.user.is_authenticated():
+			project = projectForm.save(commit = False)
+			project.user = request.user
+			project.save()
+			projectForm.save_m2m()
+			return HttpResponseRedirect('/profile.html')
+		else:
+			return render(request, 'editProject.html', {'projectForm': projectForm})
+	else:
+		projectForm = ProjectForm(instance = project)
+		return render(request, 'editProject.html', {'projectForm': projectForm})
 		
 def test(request):
 	return render(request, 'test.html')
