@@ -2,7 +2,10 @@
 {% load friendshiptags %}
 {% block content %}
 <p>
-<a href="addProject"> add new project</a></p>
+
+{% if user == profile.user %}
+<a href="/addProject"> add new project</a></p>
+{% endif %}
 </br>
 </br>
 <h3> Profile </h3>
@@ -23,15 +26,17 @@
 	{{ daw.name }} </br>
 {% endfor %}
 </p>
-<a href="editProfile"> Edit Profile </a>
+<a href="/editProfile"> Edit Profile </a>
+
 </p>
 
 <h3> Friends </h3>
-{% friends user %}
-
+{% for friend in friends %}
+	<a href="/profile/{{ friend.username }}" > {{friend.first_name}} {{ friend.last_name }} </a> 
+{% endfor %}
 <h3> Projects </h3>
 {% for project in projects %} 
-	<a href="projects/{{ project.id }}"> {{project.name}}</a> </br>
+	<a href="/projects/{{ project.id }}"> {{project.name}}</a> </br>
 {% endfor %}
 
 {% endblock %}

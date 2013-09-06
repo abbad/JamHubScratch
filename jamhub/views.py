@@ -6,6 +6,8 @@ from django.http import HttpResponseRedirect, Http404
 # Friendship app 
 from friendship.models import Friend, Follow
 
+from django.contrib.auth.models import User
+
 # my models 
 from forms import ProfileForm, ProjectForm
 from models import Profile, Project
@@ -45,7 +47,7 @@ def edit_profile(request):
 			profile.is_active = True
 			profile.save()
 			profileForm.save_m2m()
-			return HttpResponseRedirect('profile.html')
+			return HttpResponseRedirect('profile/' + request.user.username)
 		else:
 			return render(request, 'editProfile.html', {'profileForm': profileForm})
 	else:
@@ -62,19 +64,23 @@ def add_project(request):
 			project.is_active = True
 			project.save()
 			projectForm.save_m2m()
-			return HttpResponseRedirect('profile')
+			return HttpResponseRedirect('profile/' + request.user.username)
 		else: 
 			return render(request, 'addProject.html', {'projectForm': projectForm})
 	else: 
 		projectForm = ProjectForm()
 		return render(request, 'addProject.html', {'projectForm': projectForm})
 			
-def show_profile(request):
+def show_profile(request, user_name):
+	print 'fuck'
+	user1 = User.objects.get(username = user_name)
 	# get profile related to user. 
-	profile = Profile.objects.get(user = request.user)
+	profile = Profile.objects.get(user = user1)
 	# get list of projects he created 
-	projects = Project.objects.filter(creator = request.user) 
-	return render(request, 'profile.html', { 'profile' : profile, 'projects' : projects})
+	projects = Project.objects.filter(creator = user1) 
+	# get list of friends 
+	all_friends = Friend.objects.friends(user1)
+	return render(request, 'profile.html', { 'profile' : profile, 'projects' : projects, 'friends' : all_friends})
 
 def show_project(request, project_id):
 	if not request.user.is_authenticated(): 
@@ -105,7 +111,7 @@ def edit_project(request, project_id):
 			project.user = request.user
 			project.save()
 			projectForm.save_m2m()
-			return HttpResponseRedirect('/profile.html')
+			return HttpResponseRedirect('/profile/' + request.user.username)
 		else:
 			return render(request, 'editProject.html', {'projectForm': projectForm})
 	else:

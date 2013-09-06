@@ -2,12 +2,14 @@
 {% load friendshiptags %}
 {% block content %}
 </br></br>
-<a href={% url jamhub.views.show_profile %}> Profile </a>
+<a href="/profile/{{user.username}}"> Profile </a>
 </br> 
 <p> Project Name: {{ project.name }} </p>
 <p> Project Description: {{ project.description }} </p>
 <p> Project started on : {{ project.date_created}}</p>
-</br>{{project.id}}
-<a href={% url jamhub.views.edit_project project.id %}> Edit Project </a>
+</br>
 
+{% if user == project.creator %}
+<a href={% url jamhub.views.edit_project project.id %}> Edit Project </a>
+{% endif %}
 {% endblock %}
