@@ -179,9 +179,9 @@ LOGGING = {
 AUTHENTICATION_BACKENDS = ('social_auth.backends.facebook.FacebookBackend', 'django.contrib.auth.backends.ModelBackend', )
 
 ################## facebook ################
-FACEBOOK_APP_ID              = '680752408619530'
-FACEBOOK_API_SECRET          = 'b42fbc6fcfac5785367a6e0b22587dc6'
-
+FACEBOOK_APP_ID              = '630931270274669'
+FACEBOOK_API_SECRET          = '94c3b6afa7cea1c92a9eed27120136db'
+									
 FACEBOOK_EXTENDED_PERMISSIONS = ['email']
 ############################################
 
