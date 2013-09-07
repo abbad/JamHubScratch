@@ -12,8 +12,6 @@ class ProfileForm(forms.ModelForm):
 		fields = ['user', 'role', 'instruments', 'software']
 		exclude = ['user']
 		
-		
-
 class ProjectForm(forms.ModelForm):
 	name = forms.CharField(max_length = 30)
 	description = forms.CharField(max_length=300, widget=forms.Textarea)
