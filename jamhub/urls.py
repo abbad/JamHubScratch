@@ -1,4 +1,4 @@
-from django.conf.urls import patterns, url
+from django.conf.urls import include, patterns, url
 
 urlpatterns = patterns('jamhub.views',
 	(r'^createProfile', 'create_profile'),
@@ -10,6 +10,7 @@ urlpatterns = patterns('jamhub.views',
 	(r'^editProject/(?P<project_id>\d+)$'	, 'edit_project'),
 	(r'^addProject'							, 'add_project'), 
 	(r'^deleteProject/(?P<project_id>\d+)$'	, 'delete_project'),
+	(r'^search/'							, include('haystack.urls')),
 	(r'^test', 'test'),
 	
 )

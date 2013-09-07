@@ -27,7 +27,7 @@ class DAW(models.Model):
 		return self.name
 		
 class Profile(models.Model):
-	user = models.ForeignKey(User)
+	user = models.ForeignKey(User, related_name='users')
 	role = models.ManyToManyField(Role)
 	instruments = models.ManyToManyField(Instrument)
 	software = models.ManyToManyField(DAW)
