@@ -72,7 +72,6 @@ def add_project(request):
 		return render(request, 'addProject.html', {'projectForm': projectForm})
 			
 def show_profile(request, user_name):
-	print 'fuck'
 	user1 = User.objects.get(username = user_name)
 	# get profile related to user. 
 	profile = Profile.objects.get(user = user1)
@@ -82,6 +81,21 @@ def show_profile(request, user_name):
 	all_friends = Friend.objects.friends(user1)
 	return render(request, 'profile.html', { 'profile' : profile, 'projects' : projects, 'friends' : all_friends})
 
+def delete_project(request, project_id):
+	# get the project object.
+	if not request.user.is_authenticated(): 
+		return render(request, 'test.html')
+		
+	# get the object 
+	try:
+		project = Project.objects.get(id = project_id)
+	except :
+		raise Http404
+		
+	project.delete()
+	
+	return HttpResponseRedirect('/profile/' + request.user.username)
+	
 def show_project(request, project_id):
 	if not request.user.is_authenticated(): 
 		return render(request, 'test.html')

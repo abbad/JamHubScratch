@@ -10,6 +10,7 @@
 </br>
 
 {% if user == project.creator %}
-<a href={% url jamhub.views.edit_project project.id %}> Edit Project </a>
+<a href={% url jamhub.views.edit_project project.id %}> Edit Project </a>  &nbsp; &nbsp;
+<a href={% url jamhub.views.delete_project project.id %}> Delete Project </a>  
 {% endif %}
 {% endblock %}
