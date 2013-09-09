@@ -2,7 +2,6 @@
 {% load friendshiptags %}
 {% block content %}
 <p>
-
 {% if user == profile.user %}
 <a href="/addProject"> add new project</a></p>
 {% endif %}
@@ -10,7 +9,7 @@
 </br>
 <h3> Profile </h3>
 {% if not areFriends %}
-<a href="/addFriend/{{profile.user}}"><h6> Add as a friend</h6></a>
+<a href="/addFriend/{{ profile.user}}"><h6> Add as a friend</h6></a>
 {% endif %}
 <p> User Name : {{ profile.user }} </p>
 <p> Instruments : 

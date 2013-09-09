@@ -14,6 +14,12 @@
 	{% endif %}
 	
 	<a href="/home"> Home </a>
+	{% if request.path != "/search/"%} 
+	<form action="/search" > 
+		<input type="text" size="25" name="q" value="">
+	<button>submit</button>
+	</form> 
+	{% endif %}
   {% block content %}{% endblock %}
   <body>
   </body>

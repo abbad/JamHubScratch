@@ -12,6 +12,7 @@ from django.contrib.auth.models import User
 from forms import ProfileForm, ProjectForm
 from models import Profile, Project
 
+
 def home(request):
 	projects = Project.objects.all().order_by('-date_created')[:10]
 	return render(request, 'home.html', {'projects' : projects})

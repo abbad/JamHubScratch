@@ -18,9 +18,11 @@
             <h3>Results</h3>
 			
             {% for result in page.object_list %}
-                <p>
-                    <a href="{{ result.object.get_absolute_url }}">{{ result.object.user }}</a>
+                {% if result.object.user %}
+				<p>
+                    <a href="/profile/{{result.object.user}}">{{ result.object.user }}</a>
                 </p>
+				{% endif %}
             {% empty %}
                 <p>No results found.</p>
             {% endfor %}
