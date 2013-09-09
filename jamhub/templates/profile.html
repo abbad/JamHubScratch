@@ -9,6 +9,9 @@
 </br>
 </br>
 <h3> Profile </h3>
+{% if not areFriends %}
+<a href="/addFriend/{{profile.user}}"><h6> Add as a friend</h6></a>
+{% endif %}
 <p> User Name : {{ profile.user }} </p>
 <p> Instruments : 
 {% for instrument in profile.instruments.all %}

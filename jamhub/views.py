@@ -72,6 +72,7 @@ def add_project(request):
 		return render(request, 'addProject.html', {'projectForm': projectForm})
 			
 def show_profile(request, user_name):
+	areFriends = True
 	user1 = User.objects.get(username = user_name)
 	# get profile related to user. 
 	profile = Profile.objects.get(user = user1)
@@ -79,7 +80,21 @@ def show_profile(request, user_name):
 	projects = Project.objects.filter(creator = user1) 
 	# get list of friends 
 	all_friends = Friend.objects.friends(user1)
-	return render(request, 'profile.html', { 'profile' : profile, 'projects' : projects, 'friends' : all_friends})
+	# check whether they are friends. 
+	if user1 != request.user: # handle the same profile 
+		areFriends = Friend.objects.are_friends(request.user, user1)
+	return render(request, 'profile.html', { 'profile' : profile, 'projects' : projects, 
+						'friends' : all_friends, 'areFriends' : areFriends})
+						
+def add_friend(request, other_user):
+	# get the other user 
+	other_user = User.objects.get(username = other_user)
+	# add him as a friend. 
+	new_relationship = Friend.objects.add_friend(request.user, other_user)
+	# see how to emit the new signal. # read about django dispatcher
+	
+	return HttpResponseRedirect('/profile/' + request.user.username)
+	
 
 def delete_project(request, project_id):
 	# get the project object.
