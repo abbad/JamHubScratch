@@ -16,8 +16,9 @@ class ProjectForm(forms.ModelForm):
 	name = forms.CharField(max_length = 30)
 	description = forms.CharField(max_length=300, widget=forms.Textarea)
 	genre = forms.CharField(max_length = 30)
+	soundCloud = forms.CharField(max_length = 300, widget = forms.Textarea(attrs={'style': "width: 340px; height: 60px;"}))
 	
 	class Meta:
 		model = Project
-		fields = ['name', 'genre', 'description']
-		exclude = ['user', 'creator']
+		fields = ['name', 'genre', 'description', 'soundCloud']
+		exclude = ['creator']

@@ -44,6 +44,7 @@ class Project(models.Model):
 	num_stars = models.IntegerField( null = True)
 	date_created = models.DateTimeField(auto_now_add = True)
 	genre = models.CharField(max_length = 30)
+	soundCloud = models.CharField(max_length = 300)
 	
 	def __unicode__(self):
 		return self.name

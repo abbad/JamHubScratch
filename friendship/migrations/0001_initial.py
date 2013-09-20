@@ -1,13 +1,13 @@
-# encoding: utf-8
+# -*- coding: utf-8 -*-
 import datetime
 from south.db import db
 from south.v2 import SchemaMigration
 from django.db import models
 
+
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
-        
         # Adding model 'FriendshipRequest'
         db.create_table('friendship_friendshiprequest', (
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
@@ -49,7 +49,6 @@ class Migration(SchemaMigration):
 
 
     def backwards(self, orm):
-        
         # Removing unique constraint on 'Follow', fields ['follower', 'followee']
         db.delete_unique('friendship_follow', ['follower_id', 'followee_id'])
 
@@ -77,7 +76,7 @@ class Migration(SchemaMigration):
             'permissions': ('django.db.models.fields.related.ManyToManyField', [], {'to': "orm['auth.Permission']", 'symmetrical': 'False', 'blank': 'True'})
         },
         'auth.permission': {
-            'Meta': {'ordering': "('content_type__app_label', 'content_type__model', 'codename')", 'unique_together': "(('content_type', 'codename'),)", 'object_name': 'Permission'},
+            'Meta': {'ordering': "('codename',)", 'unique_together': "(('content_type', 'codename'),)", 'object_name': 'Permission'},
             'codename': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
             'content_type': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['contenttypes.ContentType']"}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
