@@ -10,8 +10,10 @@
 	Project Name: {{ project.name }} </br>
 	Project Description: {{ project.description }} </br>
 	Project Creator: {{ project.creator }} </br>
-	Sound Cloud: {{ project.soundCloud }} </br>
+	Sound Cloud:  </br>
+		<iframe width="70%" height="120" scrolling="no" frameborder="no" src="{{ project.soundCloud }}"></iframe>
 	</p>
+	
 	
 {% endfor %}
 {% endblock %}

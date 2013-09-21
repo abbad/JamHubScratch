@@ -12,6 +12,8 @@ from django.contrib.auth.models import User
 from forms import ProfileForm, ProjectForm
 from models import Profile, Project
 
+# utitlies 
+from utils.soundCloud import getIFrameSrc
 
 def home(request):
 	projects = Project.objects.all().order_by('-date_created')[:10]
@@ -62,6 +64,7 @@ def add_project(request):
 		if projectForm.is_valid() and request.user.is_authenticated():
 			project = projectForm.save(commit = False) 
 			project.creator = request.user
+			project.soundCloud = getIFrameSrc(projectForm.cleaned_data['soundCloud'])
 			project.is_active = True
 			project.save()
 			projectForm.save_m2m()
