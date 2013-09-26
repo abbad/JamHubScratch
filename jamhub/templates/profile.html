@@ -41,5 +41,9 @@
 	<a href="/projects/{{ project.id }}"> {{project.name}}</a> </br>
 {% endfor %}
 
+<h3> Friend requests </h3> 
+{% for friendRequest in friendRequests %}
+	<a href="/profile/{{ friendRequest.username }}" > {{friendRequest.first_name}} {{ friendRequest.last_name }} </a> </br>
+{% endfor %}
 {% endblock %}
 

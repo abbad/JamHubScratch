@@ -4,8 +4,9 @@ from django.contrib.auth import logout
 from django.http import HttpResponseRedirect, Http404
 
 # Friendship app 
-from friendship.models import Friend, Follow
+from friendship.models import Friend
 
+# User app 
 from django.contrib.auth.models import User
 
 # my models 
@@ -14,6 +15,7 @@ from models import Profile, Project
 
 # utitlies 
 from utils.soundCloud import getIFrameSrc
+from utils.friendships import getUsersFromFriendRequests
 
 def home(request):
 	projects = Project.objects.all().order_by('-date_created')[:10]
@@ -83,12 +85,14 @@ def show_profile(request, user_name):
 	# get list of projects he created 
 	projects = Project.objects.filter(creator = user1) 
 	# get list of friends 
-	all_friends = Friend.objects.friends(user1)
+	allFriends = Friend.objects.friends(user1)
+	# List all unread friendship requests it will return a list
+	friendRequests = getUsersFromFriendRequests(Friend.objects.unread_requests(user1))
 	# check whether they are friends. 
 	if user1 != request.user: # handle the same profile 
 		areFriends = Friend.objects.are_friends(request.user, user1)
 	return render(request, 'profile.html', { 'profile' : profile, 'projects' : projects, 
-						'friends' : all_friends, 'areFriends' : areFriends})
+						'friends' : allFriends, 'areFriends' : areFriends, 'friendRequests': friendRequests})
 						
 def add_friend(request, other_user):
 	# get the other user 
