@@ -1,4 +1,6 @@
 JamHubScratch
 =============
 
-Application to help musician find their way through life.
+Application to help musician in communicating and sharing ideas. 
+
+Main language used for application is Python. 
